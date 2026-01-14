@@ -1,0 +1,132 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.Img-Login {
+    width: 100%;
+    filter: brightness(40%);
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+}
+
+body {
+    padding-top: 30px;
+    font-family: "Poppins", sans-serif;
+    font-weight: 100;
+    font-style: normal; 
+    background-color: #9DC139;
+    opacity: 0;
+    transition: opacity 0.5s ease-in;
+    transform: scale(0.95);
+    overflow: hidden;
+}
+
+body.fade-in {
+    opacity: 1;
+    transform: scale(1);
+}
+
+body.fade-out {
+    opacity: 0;
+    transform: scale(0.95);
+}
+
+main {
+    gap: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+h1,h2 {
+    margin: 0;
+    padding: 0;
+}
+
+p {
+    color: #fff;
+    text-align: center;
+    font-size: 15px;
+    font-weight: 100;
+}
+
+.Judul {
+    text-align: center;
+    color: white;
+    margin-bottom: 10px;
+}
+
+input {
+    width: 30vh;
+    padding: 15px;
+    margin: 10px 0;
+    border: 1px solid #cccccc;
+    border-radius: 20px;
+    font-size: 16px;
+}
+
+.Images-Logo {
+    display: flex;
+    justify-content: center;
+}
+
+.Logo-Container {
+    background-color: #ffffff;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    padding: 15px 25px;
+    border-radius: 40px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.Logo-Items {
+    width: 50px;
+    height: auto;
+    object-fit: contain;
+}
+
+.Form_Display {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 50dvh;
+    height: 50dvh;
+    max-width: 400px;
+    background-color: #1D7171;
+    border-radius: 35px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.Login_Button {
+    font-weight: 600;
+    margin: 10px;
+    padding: 10px 20px;
+    background-color: #1D7171;
+    color: white;
+    border-color: #fff;
+    border-radius: 20px;
+    width: 25vh;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.Login_Button:hover {
+    background-color: #4caf50;
+}
+
+.Login_Page {
+    position: relative;
+    z-index: 1;
+}

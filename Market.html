@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Tabel Jenis Sampah</title>
+    <link rel="stylesheet" href="CSS/Market.css">
+    <script src="Back/JS/Active_Button.js"></script>
+</head>
+
+<body>
+    <img src="Images/1000546995.jpg" class="Img-Market">
+    <nav class="navbar" id="navbar">
+        <div class="navbar-container">
+            <div class="navbar-menu">
+                <a href="Dashboard.html" class="Navbar-Item">Beranda</a>
+                <a href="Setoran_Sampah.html" class="Navbar-Item">Setor</a>
+                <a href="Manajemen_Sampah.html" class="Navbar-Item">Kelola</a>
+                <a href="Market.html" class="Navbar-Item">Market</a>
+                <a href="Nasabah.html" class="Navbar-Item">Nasabah</a>
+                <a href="index.html" class="Navbar-Item" id="Navbar-Item-LogOut">Logout</a>
+            </div>
+    </nav>
+
+    <main>
+        <div class="Table-Market-Container">
+            <table class="Table-Market">
+                <div class="Top-Table">
+                    <div class="Judul-Table">
+                        <h2>Daftar Harga Sampah</h2>
+                        <hr>
+                    </div>
+                    <thead>
+                        <tr>
+                            <th>Jenis sampah</th>
+                            <th>Deskripsi</th>
+                            <th>Harga/KG</th>
+                            <th>Edit</th>
+                        </tr>
+                    </thead>
+                    <tbody id="datamarket">
+                    </tbody>
+                </div>
+            </table>
+        </div>
+
+        <div class="Table-edit-harga">
+            <div class="Table-edit-harga-Content">
+                <input type="text" class="Form-Edit" id="editnama" disabled>
+                <input type="text" class="Form-Edit" id="editdeskripsi" placeholder="Deskripsi">
+                <input type="number" class="Form-Edit" id="editHarga" placeholder="Harga RP">
+                <button class="Button-Edit" onclick="editData()">Simpan</button>
+                <button class="Button-Edit" onclick="Close()">Batal</button>
+            </div>
+        </div>
+        </div>
+    </main>
+    <script src="Back/JS/Market.js"></script>
+</body>
+
+</html>

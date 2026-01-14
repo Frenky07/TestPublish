@@ -1,0 +1,333 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.Img-Riwayat {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    filter: brightness(40%);
+    z-index: -1;
+}
+
+body {
+    font-family: "Poppins", sans-serif;
+    line-height: 1.6;
+    scroll-snap-type: y mandatory;
+    background-color: #9DC139;
+    transform: scale(0.95);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    transform: translateX(0);
+    opacity: 1;
+}
+
+body.fade-in {
+    opacity: 1;
+    transform: scale(1);
+}
+
+body.fade-out {
+    opacity: 0;
+    transform: scale(0.95);
+}
+
+.Button-Edit-Riwayat {
+    margin-top: 20px;
+    margin-left: 10px;
+}
+
+/* ================================================ */
+
+.Riwayat-Content{
+    background-color: #1D7171;
+    border-radius: 20px;
+    opacity: 0.90;
+    padding: 20px;
+    color: #fff;
+}
+/* ================ Table ====================== */
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid rgb(140 140 140);
+    margin-top: 20px;
+    border-color: #1D7171;
+    border-width: 4px;
+}
+
+th,
+td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    background: #dbdbdb;
+    border: 1px solid #1D7171;
+}
+
+tbody td:nth-child(odd){
+    background-color: #fff;
+}
+
+tbody td:nth-child(even){
+    background-color: #f4f1e8;
+}
+
+thead th:nth-child(even) {
+    background-color: #f4f1e8;
+}
+
+thead th:nth-child(odd) {
+    background-color: #fff;
+}
+
+thead th {
+    background-color: #ecf0f1;
+    color: #2c3e50;
+}
+
+/* ============= Button ====================== */
+
+.btn-Edit {
+    padding: 10px 20px;
+    background-color: #4e54c8;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin-right: 10px;
+}
+
+.btn-Edit:hover {
+    background-color: #6c61be;
+    transform: scale(1.05);
+}
+
+.Table-Nasabah{
+    display: none;
+    width: 100%;
+    max-width: 200vh;
+    margin: 20px auto;
+    border-collapse: collapse;
+}
+
+.Table-Nasabah-Tarik{
+    display: none;
+    width: 100%;
+    max-width: 200vh;
+    margin: 20px auto;
+    border-collapse: collapse;
+}
+
+/* Tidak Menemukan Class/Id untuk Button Cetak Table Riwayat */
+
+button {
+    padding: 10px 20px;
+    background-color: #4e54c8;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.Button-Cetak:hover {
+    background-color: #6c61be;
+    transform: scale(1.05);
+}
+
+/* ============ CSS Struk ========= */
+
+.Table-Struk {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    overflow: auto;
+}
+
+.Table-Struk-Content {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 90vw; 
+    max-height: 90vh;
+    width: 400px; 
+    overflow-y: auto;
+    position: relative;
+}
+
+.Table-Struk-in {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+}
+
+.Button-Cetak {
+    padding: 10px 20px;
+    background-color: #4e54c8;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.Button-Cetak:hover {
+    background-color: #6c61be;
+    transform: scale(1.05);
+}
+
+.btn-Edit {
+    padding: 10px 20px;
+    background-color: #4e54c8;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin-right: 10px;
+}
+
+.btn-Edit:hover {
+    background-color: #6c61be;
+    transform: scale(1.05);
+}
+
+.btn-Cetak {
+    padding: 10px 20px;
+    background-color: #4e54c8;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-Cetak:hover {
+    background-color: #6c61be;
+    transform: scale(1.05);
+}
+
+.Button-Edit {
+    padding: 10px 20px;
+    background-color: #4e54c8;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin-right: 10px;
+}
+
+.Button-Edit:hover {
+    background-color: #6c61be;
+    transform: scale(1.05);
+}
+
+/* ============ CSS Struk ========= */
+
+.Table-Struk-Tarik {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    overflow: auto;
+}
+
+.Table-Struk-Content-Tarik {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 90vw; 
+    max-height: 90vh;
+    width: 400px; 
+    overflow-y: auto;
+    position: relative;
+}
+
+.Table-Struk-in-Tarik {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+}
+
+@media print {
+    body {
+        margin: 0;
+        padding: 0;
+        font-size: 12pt;
+    }
+    .Table-Struk-in {
+        margin: 10px 0;
+    }
+    .Table-Struk {
+        display: block !important;
+    }
+}
+
+/* ======================================================= */
+
+@media (max-width: 600px) {
+    body {
+        transform: none;
+        padding: 10px;
+        font-size: 14px;
+    }
+
+    .Riwayat-Content {
+        padding: 15px;
+        border-radius: 10px;
+    }
+
+    table,
+    th,
+    td {
+        font-size: 12px;
+        padding: 6px;
+    }
+
+    .btn-Edit,
+    .btn-Cetak,
+    .Button-Cetak,
+    .Button-Edit {
+        padding: 8px 12px;
+        font-size: 13px;
+        width: 100%;
+        margin: 5px 0;
+    }
+
+    .Table-Struk-Content,
+    .Table-Struk-Content-Tarik {
+        width: 90%;
+        max-width: none;
+        padding: 15px;
+    }
+
+    .Table-Struk-in,
+    .Table-Struk-in-Tarik {
+        font-size: 13px;
+    }
+
+    .Button-Edit-Riwayat {
+        margin-left: 0;
+    }
+}

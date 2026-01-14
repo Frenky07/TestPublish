@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Setor Sampah</title>
+    <link rel="stylesheet" href="CSS/Setoran_Sampah.css">
+    <script src="Back/JS/Active_Button.js"></script>
+</head>
+
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+
+
+<body>
+    <img src="Images/1000546993.jpg" class="Img-Setoran_Sampah">
+    <nav class="navbar" id="navbar">
+        <div class="navbar-container">
+        </div>
+        <div class="navbar-menu">
+            <a href="Dashboard.html" class="Navbar-Item">Beranda</a>
+            <a href="Setoran_Sampah.html" class="Navbar-Item">Setor</a>
+            <a href="Manajemen_Sampah.html" class="Navbar-Item">Kelola</a>
+            <a href="Market.html" class="Navbar-Item">Market</a>
+            <a href="Nasabah.html" class="Navbar-Item">Nasabah</a>
+            <a href="index.html" class="Navbar-Item" id="Navbar-Item-LogOut">Logout</a>
+        </div>
+    </nav>
+    <main>
+        <div class="Form-Container">
+            <form class="Form_Sampah" action="Back/php/Setoran_Sampah.php" method="POST">
+                <h1>Form Setor Sampah</h1>
+
+                <div class="Form-group" id="ui">
+                    <div class="Form-Menu">
+                        <label for="nama">Nama Kepala Keluarga</label>
+                        <input type="text" id="nama" name="nama" required>
+                    </div>
+
+                    <input type="hidden" id="id_nasabah" name="id_nasabah">
+
+                    <div class="Form-Menu">
+                        <label for="Tanggal">Tanggal:</label>
+                        <input type="date" id="Tanggal" name="Tanggal" required>
+                    </div>
+
+                    <div class="Form-Menu">
+                        <label for="id_jenis">Jenis Sampah:</label>
+                        <select id="id_jenis" name="id_jenis" required>
+                            <option value="">Loading...</option>
+                        </select>
+                    </div>
+
+
+                    <div class="Form-Menu">
+                        <label for="berat">Berat (kg):</label>
+                        <input type="number" id="berat" name="berat" min="0" step="0.01" required>
+                    </div>
+                    <div class="Button-Container">
+                        <button type="submit" class="Button-Submit">Submit</button>
+                    </div>
+                    <div class="Add-KK">
+                        <button class="Button-Add">
+                            <a href="Add_kk.html">Tambah KK</a>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <script>
+            let lastScrollTop = 0;
+            const navbar = document.getElementById('navbar');
+
+            window.addEventListener("scroll", function () {
+                const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+
+                if (currentScroll > lastScrollTop) {
+                    navbar.classList.add("navbar-hidden");
+                } else {
+                    navbar.classList.remove("navbar-hidden");
+                }
+
+                lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
+            });
+
+            $(document).ready(function () {
+                $.ajax({
+                    url: "Back/php/get_jenis_sampah_json.php",
+                    method: "GET",
+                    success: function (response) {
+                        let options = '<option value="">Pilih Jenis Sampah</option>';
+                        response.forEach(function (item) {
+                            options += `<option value="${item.id}">${item.nama}</option>`;
+                        });
+                        $("#id_jenis").html(options);
+                    },
+                    error: function () {
+                        alert("Gagal mengambil data jenis sampah");
+                    }
+                });
+            });
+        </script>
+
+        <script>
+            $(function () {
+                $("#nama").autocomplete({
+                    source: "Back/php/autocomplete_nasabah.php",
+                    minLength: 1,
+                    focus: function (event, ui) {
+                        $("#nama").val(ui.item.label);
+                        return false;
+                    },
+                    select: function (event, ui) {
+                        $("#nama").val(ui.item.label);
+                        $("#id_nasabah").val(ui.item.value);
+                        return false;
+                    }
+                });
+            });
+        </script>
+    </main>
+</body>
+
+</html>
