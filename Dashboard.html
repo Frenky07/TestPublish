@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DashBoard</title>
+    <link rel="icon" type="Images/png" href="Images/logo_kelompok_4.png">
+    <link rel="stylesheet" href="CSS/Dashboard.css">
+    <script src="Back/JS/Active_Button.js"></script>
+</head>
+
+<body>
+    <img src="Images/1000546994.jpg" class="Img-Dashboard">
+    <nav class="navbar" id="navbar">
+        <div class="navbar-container">
+            <div class="navbar-menu">
+                <a href="Dashboard.html" class="Navbar-Item">Beranda</a>
+                <a href="Setoran_Sampah.html" class="Navbar-Item">Setor</a>
+                <a href="Manajemen_Sampah.html" class="Navbar-Item">Kelola</a>
+                <a href="Market.html" class="Navbar-Item">Market</a>
+                <a href="Nasabah.html" class="Navbar-Item">Nasabah</a>
+                <a href="index.html" class="Navbar-Item" id="Navbar-Item-LogOut">Logout</a>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <div class="Section-Content">
+            <section class="section-chart" id="Section-1">
+                <div class="Judul">
+                    <h4>Distribusi Sampah</h4>
+                    <select class="custom-select" id="filter_tahun">
+                        <option value="">Pilih Tahun</option>
+                    </select>
+                    <select class="custom-select" id="filter_bulan">
+                        <option value="">Pilih Bulan</option>
+                    </select>
+
+                </div>
+                <canvas id="pieChart" width="50" height="50"></canvas>
+            </section>
+            <section class="section-keterangan" id="Section-2">
+                <div class="Judul-Keterangan">
+                    <h3>Table keterangan</h3>
+                </div>
+                <table class="keterangan-table">
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>Jenis Sampah</th>
+                            <th>Total Berat</th>
+                            <th>Total Pendapatan</th>
+                        </tr>
+                    </thead>
+                    <tbody id="isi-keterangan"></tbody>
+                </table>
+            </section>
+            <section class="section" id="Section-3"></section>
+        </div>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        let lastScrollTop = 0;
+        const navbar = document.getElementById('navbar');
+
+        window.addEventListener("scroll", function () {
+            const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+
+            if (currentScroll > lastScrollTop) {
+                navbar.classList.add("navbar-hidden");
+            } else {
+                navbar.classList.remove("navbar-hidden");
+            }
+
+            lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
+        });
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const filterTahunSelect = document.getElementById("filter_tahun");
+            const filterBulanSelect = document.getElementById("filter_bulan");
+            const isiKeterangan = document.getElementById("isi-keterangan");
+            let chartInstance = null;
+
+            function loadChartAndTable() {
+                const tahun = filterTahunSelect.value;
+                const bulan = filterBulanSelect.value;
+                let url = 'Back/PHP/get_chart_data.php';
+
+                const params = new URLSearchParams();
+                if (tahun) params.append("tahun", tahun);
+                if (bulan) params.append("bulan", bulan);
+                if (params.toString()) url += '?' + params.toString();
+
+                fetch(url)
+                    .then(response => response.json())
+                    .then(data => {
+                        const labels = data.map(item => item.jenis);
+                        const values = data.map(item => item.berat);
+
+                        if (chartInstance) chartInstance.destroy();
+
+                        const ctx = document.getElementById('pieChart').getContext('2d');
+                        chartInstance = new Chart(ctx, {
+                            type: 'pie',
+                            data: {
+                                labels: labels,
+                                datasets: [{
+                                    data: values,
+                                    backgroundColor: [
+                                        '#F5BB00',
+                                        '#8EA604',
+                                        '#EC9F05',
+                                        '#D76A03',
+                                        '#BF3100',
+                                        'rgba(255, 159, 64, 0.6)'
+                                    ]
+                                }]
+                            },
+                            options: {
+                                responsive: true,
+                                plugins: {
+                                    title: {
+                                        display: true,
+                                        text: 'Distribusi Sampah Berdasarkan Jenis'
+                                    },
+                                    legend: {
+                                        position: 'bottom'
+                                    }
+                                }
+                            }
+                        });
+
+                        isiKeterangan.innerHTML = '';
+                        data.forEach((item, index) => {
+                            const row = document.createElement("tr");
+                            row.innerHTML = `
+                        <td>${index + 1}</td>
+                        <td>${item.jenis}</td>
+                        <td>${item.berat} kg</td>
+                        <td>Rp ${item.pendapatan.toLocaleString('id-ID')}</td>
+                    `;
+                            isiKeterangan.appendChild(row);
+                        });
+                    })
+                    .catch(error => console.error('Gagal ambil data:', error));
+            }
+
+            filterTahunSelect.addEventListener("change", loadChartAndTable);
+            filterBulanSelect.addEventListener("change", loadChartAndTable);
+
+            fetch("Back/php/get_tahun_bulan_sampah.php")
+                .then(response => response.json())
+                .then(data => {
+                    const bulanMap = {
+                        "01": "Januari", "02": "Februari", "03": "Maret",
+                        "04": "April", "05": "Mei", "06": "Juni",
+                        "07": "Juli", "08": "Agustus", "09": "September",
+                        "10": "Oktober", "11": "November", "12": "Desember"
+                    };
+
+                    const tahunSet = new Set();
+                    const bulanSet = new Set();
+
+                    data.forEach(row => {
+                        tahunSet.add(row.tahun);
+                        bulanSet.add(String(row.bulan).padStart(2, '0'));
+                    });
+
+                    filterTahunSelect.innerHTML = '<option value="">Pilih Tahun</option>';
+                    Array.from(tahunSet).sort((a, b) => b - a).forEach(tahun => {
+                        const opt = document.createElement("option");
+                        opt.value = tahun;
+                        opt.textContent = tahun;
+                        filterTahunSelect.appendChild(opt);
+                    });
+
+                    filterBulanSelect.innerHTML = '<option value="">Pilih Bulan</option>';
+                    Array.from(bulanSet).sort().forEach(bulan => {
+                        const opt = document.createElement("option");
+                        opt.value = bulan;
+                        opt.textContent = bulanMap[bulan] || bulan;
+                        filterBulanSelect.appendChild(opt);
+                    });
+
+                    loadChartAndTable();
+                });
+        });
+    </script>
+</body>
+
+</html>

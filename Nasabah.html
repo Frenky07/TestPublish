@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nasabah</title>
+    <link rel="stylesheet" href="CSS/Nasabah.css">
+    <script src="Back/JS/Nasabah.js"></script>
+</head>
+
+<body>
+    <img src="Images/1000546994.jpg" class="Img-Nasabah">
+    <nav class="navbar" id="navbar">
+        <div class="navbar-container">
+            <div class="navbar-menu">
+                <a href="Dashboard.html" class="Navbar-Item">Beranda</a>
+                <a href="Setoran_Sampah.html" class="Navbar-Item">Setor</a>
+                <a href="Manajemen_Sampah.html" class="Navbar-Item">Kelola</a>
+                <a href="Market.html" class="Navbar-Item">Market</a>
+                <a href="Nasabah.html" class="Navbar-Item">Nasabah</a>
+                <a href="index.html" class="Navbar-Item" id="Navbar-Item-LogOut">Logout</a>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <div class="Table-Nasabah-Container">
+            <table class="Table-Nasabah">
+                <div class="Top-Table">
+                    <div class="Judul-Table">
+                        <h2>Daftar Nasabah</h2>
+                        <hr>
+                    </div>
+                    <div class="Filter">
+                        <div class="Filter-Container">
+                            <div class="Filter-Item">
+                                <input type="text" id="searchNama" placeholder="Cari nama nasabah...">
+                            </div>
+                            <div class="Filter-Item">
+                                <select id="filterSaldo">
+                                    <option value="ada_saldo" class="select-saldo">Hanya yang punya saldo</option>
+                                    <option value="semua" class="select-saldo">Semua Nasabah</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <thead>
+                        <tr>
+                            <th scope="col">Nasabah</th>
+                            <th scope="col">Total Tabungan</th>
+                            <th scope="col">Nomor WA </th>
+                            <th scope="col">Tindakan</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tabunganNasabah"></tbody>
+                </div>
+            </table>
+        </div>
+
+        <div class="Table-Tarik">
+            <div class="Tarik-Content">
+                <h3>Tarik Saldo</h3>
+                <input type="text" class="Form-Edit" id="editnama" placeholder="Nama" disabled>
+                <input type="date" class="Form-Edit" id="editTanggal">
+                <input type="number" class="Form-Edit" id="editTotal" disabled>
+                <input type="number" class="Form-Edit" id="editSaldo" placeholder="Jumlah saldo yang ingin di tarik">
+                <button class="Button-Edit" id="btnTarikSaldo">Tarik Saldo</button>
+                <button class="Button-Edit" onclick="close()">Batal</button>
+            </div>
+        </div>
+
+        <div class="Table-Nomor">
+            <div class="Nomor-Content">
+                <h3>Edit Nomor WA</h3>
+                <input type="text" class="Form-Edit" id="editnama_nomor" placeholder="Nama" disabled>
+                <input type="text" class="Form-Edit" id="tampilnomor" placeholder="Nomor" disabled>
+                <input type="text" name="Form-Edit" id="editNomor" placeholder="Nomor Baru">
+                <button class="btn-Edit" id="btnEditNomor">Edit Nomor</button>
+                <button class="btn-Edit" onclick="close_nomor()" id="btnBatal_nomor">Batal</button>
+            </div>
+        </div>
+    </main>
+    <script>
+        let lastScrollTop = 0;
+        const navbar = document.getElementById('navbar');
+
+        window.addEventListener("scroll", function () {
+            const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+
+            if (currentScroll > lastScrollTop) {
+                navbar.classList.add("navbar-hidden");
+            } else {
+                navbar.classList.remove("navbar-hidden");
+            }
+
+            lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
+        });
+    </script>
+</body>
+
+</html>

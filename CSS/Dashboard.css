@@ -1,0 +1,350 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.Img-Dashboard {
+    width: 100%;
+    filter: brightness(40%);
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+}
+
+body {
+    font-family: "Poppins", sans-serif;
+    line-height: 1.6;
+    scroll-snap-type: y mandatory;
+    background-color: #9DC139;
+    transform: scale(0.95);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    transform: translateX(0);
+    opacity: 1;
+}
+
+body.fade-in {
+    opacity: 1;
+    transform: scale(1);
+}
+
+body.fade-out {
+    opacity: 0;
+    transform: scale(0.95);
+}
+
+/* =============================== NAVBAR =================================== */
+
+.navbar {
+    display: flex;
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: linear-gradient(180deg, rgba(157, 193, 57, 0.32) 0%, rgba(164, 179, 121, 0.156) 100%);
+    /* background: rgba(157, 193, 57, 0.32); */
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(2.4px);
+    -webkit-backdrop-filter: blur(2.4px);
+    border: 1px solid rgba(157, 193, 57, 0.3);
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.navbar-hidden {
+    transform: translateY(-100%);
+    opacity: 0;
+}
+
+.navbar-visible {
+    transform: translateY(0) !important;
+    opacity: 1 !important;
+}
+
+.navbar-menu {
+    display: flex;
+    padding: 10px;
+    gap: 100px;
+    flex-wrap: nowrap;
+}
+
+.Navbar-Item {
+    border: solid;
+    color: oldlace;
+    text-decoration: none;
+    font-weight: 500;
+    padding: 5px 15px;
+    border-radius: 25px;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.Navbar-Item:hover {
+    background-color: #1D7171;
+    transform: translateY(-2px);
+}
+
+.navbar-item::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: #ffd700;
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+}
+
+.navbar-item:hover::after {
+    width: 80%;
+    transform: translateX(-50%) scaleX(1.2);
+}
+
+.Navbar-Item:active {
+    background-color: #2b711dad;
+    transform: translateY(0);
+}
+
+.active-nav {
+    background-color: #1D7171;
+}
+
+/* ======================= SECTION ===================================== */
+
+.Section-Content {
+    min-height: 100vh;
+    padding: 20px 5vw;
+    max-width: 1500px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.section {
+    height: 100vh;
+    scroll-snap-align: start;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2.5vw;
+}
+
+.Section {
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+/* ==================== Section Bagian Chart ========================= */
+
+.section-chart {
+    padding: 10vh;
+    background-color: #fff;
+    border-radius: 7vh;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.section-chart h4{
+    text-align: center;
+    font-size: 2vw;
+}
+
+.section-chart select{
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+select {
+    height: auto;
+    padding: 10px 12px;
+    font-size: 16px;
+    border-radius: 10px;
+}
+
+.custom-select {
+    width: 100%;
+    max-width: 300px;
+    font-size: 16px;
+    padding: 10px;
+    border-radius: 15px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+    margin: 0 auto;
+}
+
+#pieChart {
+    max-width: 500px;
+    max-height: 500px;
+    width: 100%;
+    height: auto;
+    margin: 0 auto;
+    display: block;
+}
+
+/* ============================== Section Bagian Keterangan ====================*/
+
+.Judul-Keterangan {
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    box-shadow: #000;
+}
+
+.Judul-Keterangan h3{
+    text-align: center;
+    font-weight: 700;
+    background-color: #1D7171;
+    padding: 10px;
+    border-radius: 1.5vh;
+    width: 50vh;
+    text-shadow: #ddd;
+    color: #fff;
+}
+
+.section-keterangan {
+    padding: 10vh;
+    background-color: #fff;
+    border-radius: 7vh;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid rgb(140 140 140);
+    margin-top: 20px;
+    border-color: #ccc;
+    border-width: 4px;
+}
+
+th,td{
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    background: #dbdbdb;
+    border: 1px solid rgb(140 140 140);
+    color: #000;
+}
+
+thead :nth-child(even){
+    background-color: #f4f1e8;
+}
+
+thead th:nth-child(odd) {
+    background-color: #fff;
+}
+
+tbody tr:nth-child(even) td {
+    background-color: #f4f1e8;
+}
+
+tbody tr:nth-child(odd) td {
+    background-color: #fff;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ================== NAVBAR ============ */
+
+@media (max-width: 1024px) {
+    .navbar-menu {
+        gap: 30px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .Navbar-Item {
+        padding: 5px 10px;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .navbar-menu {
+        gap: 15px;
+    }
+
+    .Navbar-Item {
+        padding: 4px 8px;
+        font-size: 0.8rem;
+    }
+}
+
+/* ================================= */
+
+@media (max-width: 600px) {
+    body {
+        transform: scale(1);
+        padding: 10px;
+    }
+
+    .navbar-menu {
+        /* flex-direction: column; */
+        gap: 10px;
+        padding: 10px 0;
+    }
+
+    .Navbar-Item {
+        padding: 8px;
+        font-size: 0.9rem;
+        width: 80%;
+        text-align: center;
+        margin: 0 auto;
+    }
+
+    .Section-Content {
+        padding: 10px;
+    }
+
+    .section-chart,
+    .section-keterangan {
+        padding: 20px;
+        border-radius: 20px;
+    }
+
+    .Judul h4,
+    .Judul-Keterangan h3 {
+        font-size: 1.2rem;
+        width: auto;
+    }
+
+    .custom-select {
+        max-width: 100%;
+        margin-bottom: 10px;
+        font-size: 14px;
+    }
+
+    #pieChart {
+        max-width: 100%;
+        height: auto;
+    }
+
+    table {
+        font-size: 0.85rem;
+        overflow-x: auto;
+        display: block;
+    }
+
+    th, td {
+        padding: 8px;
+        text-align: left;
+    }
+
+    .section {
+        font-size: 1.2rem;
+    }
+}

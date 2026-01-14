@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Riwayat</title>
+    <link rel="stylesheet" href="CSS/Riwayat.css">
+</head>
+<body>
+    <img src="Images/1000546994.jpg" class="Img-Riwayat">
+    <div class="Riwayat-Container">
+        <div class="Riwayat-Content">
+            <h1 class="Nama-Nasabah" id="nama">Nama: </h1>
+            <h3 class="Jumlah-Tabungan" id="jumlah-tabungan">Jumlah Tabungan:</h3>
+        </div>
+
+        <div class="Button-Edit-Riwayat">
+            <button class="btn-Edit" id="btn-setor">Riwayat Setor</button>
+            <button class="btn-Edit" id="btn-Riwayat">Riwayat Tarik</button>
+            <button class="btn-Edit" id="btn-kembali">Kembali</button>
+        </div>
+
+        <div>
+            <table class="Table-Nasabah" id="table-setor">
+                <thead>
+                    <tr>
+                        <th>Jenis sampah</th>
+                        <th>Berat(KG)</th>
+                        <th>Total Harga</th>
+                        <th>Tanggal Setor</th>
+                        <th>Cetak</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+
+        <div>
+            <table class="Table-Nasabah-Tarik" id="Table-Tarik">
+                <thead>
+                    <tr>
+                        <th>Jumlah Tarik</th>
+                        <th>Tanggal Tarik</th>
+                        <th>Cetak</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+
+        <div class="Table-Struk">
+            <div class="Table-Struk-Content">
+                <div class="Struk-Content">
+                    <h2 class="Table-Struk-in">Bank Sampah (Setor)</h2>
+                    <p class="Table-Struk-in">=======================================</p>
+                    <p class="Table-Struk-in">Nama: <span id="nama-Struk"></span></p>
+                    <p class="Table-Struk-in">Jenis Sampah: <span id="jenis-Struk"></span></p>
+                    <p class="Table-Struk-in">Berat: <span id="berat-Struk"></span> kg</p>
+                    <p class="Table-Struk-in">Harga/kg: Rp <span id="harga-Struk"></span></p>
+                    <p class="Table-Struk-in">=======================================</p>
+                    <p class="Table-Struk-in"><strong>Total: Rp <span id="total-Struk"></span></strong></p>
+                    <p class="Table-Struk-in">=======================================</p>
+                    <p class="Table-Struk-in">Tanggal: <span id="tanggal-Struk"></span></p>
+                </div>
+                <button type="submit" class="Button-Cetak">Cetak</button>
+                <button id="btn-kirim-wa" class="Button-Edit" onclick="kirimStrukWA()">Kirim via WhatsApp</button>
+                <button id="btn-tutup-struk" class="Button-Edit"
+                    onclick="document.querySelector('.Table-Struk').style.display='none'">Tutup</button>
+            </div>
+        </div>
+
+        <div class="Table-Struk-Tarik">
+            <div class="Table-Struk-Content-Tarik">
+                <div class="Struk-Content-Tarik">
+                    <h2 class="Table-Struk-in-Tarik">Bank Sampah (Tarik)</h2>
+                    <p class="Table-Struk-in-Tarik">=======================================</p>
+                    <p class="Table-Struk-in-Tarik">Nama: <span id="nama-Struk-tarik"></span></p>
+                    <p class="Table-Struk-in-Tarik">=======================================</p>
+                    <p class="Table-Struk-in-Tarik"><strong>Total: Rp <span id="total-tarik-saldo"></span></strong></p>
+                    <p class="Table-Struk-in-Tarik">=======================================</p>
+                    <p class="Table-Struk-in-Tarik">Tanggal: <span id="tanggal-Struk-tarik"></span></p>
+                </div>
+                <button type="submit" class="Button-Cetak-Tarik">Cetak</button>
+                <button id="btn-kirim-wa-tarik">Kirim via WhatsApp</button>
+                <button id="btn-tutup-struk-tarik" class="Button-Edit"
+                    onclick="document.querySelector('.Table-Struk-Tarik').style.display='none'">Tutup</button>
+            </div>
+        </div>
+        
+    </div>
+    <script src="Back/JS/Riwayat.js"></script>
+</body>
+</html>
